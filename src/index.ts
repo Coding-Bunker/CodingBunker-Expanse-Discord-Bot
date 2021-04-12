@@ -10,8 +10,7 @@ client.on("ready", () => {
 });
 
 client.on("message", (message) => {
-  if (message.content.toLowerCase() === "ping")
-    message.reply("Pong!");
-})
+  if (message.content.toLowerCase() === "ping") message.reply("Pong!");
+});
 
-client.login(process.env.DISCORD_BOT_TOKEN)
+client.login(process.env.DISCORD_BOT_TOKEN);
