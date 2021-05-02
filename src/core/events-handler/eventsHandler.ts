@@ -10,6 +10,8 @@ let discordClient: Discord.Client
 module.exports = {
     init(client: Discord.Client) {
         discordClient = client;
+        this.initEssentialEvents()
+        this.initEvents()
     },
 
     initEssentialEvents(client = discordClient) {
