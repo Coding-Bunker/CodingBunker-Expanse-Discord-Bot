@@ -1,6 +1,8 @@
 import Discord from "discord.js";
 const logger = require("./core/utils/logger");
 const eventsHandler = require("./core/events-handler/eventsHandler");
+import dotenv from "dotenv";
+import { sendInitialVerificationMessage } from "./verification/messages";
 
 const client = new Discord.Client({
     // Non ci serve cachare molti message al momento
@@ -11,6 +13,13 @@ const client = new Discord.Client({
 });
 
 eventsHandler.init(client);
+client.on("guildMemberAdd", async (member) => {
+  await sendInitialVerificationMessage(member);
+})
+
+client.on("message", (message) => {
+  if (message.content.toLowerCase() === "ping") message.reply("Pong!");
+});
 
 client.login(process.env.DISCORD_BOT_TOKEN)
     .then(() => logger.info("Bot loggato su Discord"))
