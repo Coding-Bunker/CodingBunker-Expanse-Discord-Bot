@@ -736,13 +736,6 @@ registry-url@^5.0.0:
   dependencies:
     rc "^1.2.8"
 
-require-all-ts@^0.0.11:
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/require-all-ts/-/require-all-ts-0.0.11.tgz#dd6334e631bfc6cc9fa0c302693a4bf396176c35"
-  integrity sha512-8LgRdoYDnPDJpnoBWBceSimfn1GQOgmQuyyaSAv9cCnMeoaQh7nqAnwbM+XHFh6GGhYsGJNgzcR2jFV2/76TFg==
-  dependencies:
-    tsc "^1.20150623.0"
-
 responselike@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/responselike/-/responselike-1.0.2.tgz#918720ef3b631c5642be068f15ade5a46f4ba1e7"
@@ -881,11 +874,6 @@ ts-node@^9.1.1:
     make-error "^1.1.1"
     source-map-support "^0.5.17"
     yn "3.1.1"
-
-tsc@^1.20150623.0:
-  version "1.20150623.0"
-  resolved "https://registry.yarnpkg.com/tsc/-/tsc-1.20150623.0.tgz#4ebc3c774e169148cbc768a7342533f082c7a6e5"
-  integrity sha1-Trw8d04WkUjLx2inNCUz8ILHpuU=
 
 tweetnacl@^1.0.3:
   version "1.0.3"
