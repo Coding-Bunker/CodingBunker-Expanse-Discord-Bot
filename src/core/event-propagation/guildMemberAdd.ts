@@ -1,6 +1,9 @@
 import { GuildMember } from "discord.js";
 import { sendInitialVerificationMessage } from "../../verification/verificationProcess";
-import { sendUserKickedAfterFailedVerification, sendVerificationSuccessMessage } from "../../verification/verificationProcessMethods";
+import {
+  sendUserKickedAfterFailedVerification,
+  sendVerificationSuccessMessage,
+} from "../../verification/verificationProcessMethods";
 import { error, info } from "../utils/logger";
 /**
  * handling di tutti i metodi relativi all'evento `guildMemberAdd`
@@ -14,14 +17,14 @@ export default async function guildMemberAdd(member: GuildMember) {
           `[VERIFICA]: al membro ${member.displayName} è stato assegnato il ruolo da verificato`
         );
       });
-      sendVerificationSuccessMessage(member)
+      sendVerificationSuccessMessage(member);
     })
     .catch(async (failedMember: GuildMember) => {
       info(
         `[VERIFICA]: Timer di Kick avviato per l'utente: ${failedMember.displayName}`
       );
       setTimeout(async () => {
-        sendUserKickedAfterFailedVerification(member)
+        sendUserKickedAfterFailedVerification(member);
         await failedMember
           .kick()
           .catch((err) =>

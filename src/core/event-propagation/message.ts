@@ -6,8 +6,8 @@ import { Message } from "discord.js";
 export default async function messageHandling(message: Message) {
   const pingPong = async (message: Message) => {
     message.content.toLowerCase().startsWith("ping")
-      ?  await message.reply("Pong 🏓!")
+      ? await message.reply("Pong 🏓!")
       : "";
   };
-  await pingPong(message)
+  await pingPong(message);
 }
