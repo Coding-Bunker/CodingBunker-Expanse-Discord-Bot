@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "beautify.log": "^2.1.2",
+    "canvas": "^2.8.0",
     "discord.js": "^12.5.3",
     "dotenv": "^8.2.0",
     "nanoid": "^3.1.22",
