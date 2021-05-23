@@ -19,6 +19,7 @@ export default async function guildMemberAdd(member: GuildMember) {
         warn(
           `[VERIFICA]: Membro ${failedMember.displayName} kickato 🦵!, 1 ora è trascorsa`
         );
+        // const a = failedMember.guild.channels.cache.find(channel => channel.id === "831256919091576844")
         await failedMember
           .kick()
           .catch((err) =>
