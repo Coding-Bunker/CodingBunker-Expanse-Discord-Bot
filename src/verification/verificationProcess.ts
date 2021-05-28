@@ -1,12 +1,12 @@
 import { nanoid } from "nanoid";
 import { GuildMember, Message, MessageAttachment } from "discord.js";
-import { info, warn, error as loggerError } from "../core/utils/logger";
+import { warn, error as loggerError } from "../core/utils/logger";
 import {
   createNewCaptcha,
   sendDmDisabledError,
   sendVerificationGreetingMessage,
 } from "./verificationProcessMethods";
-import { createCanvas } from "canvas";
+import { createNewDMEmbedBasedOnCase } from "../helpers/helpers";
 
 export const sendInitialVerificationMessage = async (
   newMember: GuildMember
@@ -15,10 +15,6 @@ export const sendInitialVerificationMessage = async (
     try {
       newMember.createDM().then(async (channel) => {
         let verId = nanoid(10);
-        info(
-          `[VERIFICA]: 🟩 Nuovo canale DM creato per la verifica, id: ${verId}, membro da verificare: ${newMember.displayName}`
-        );
-
         const captchaImage = createNewCaptcha(verId);
         const attachment = new MessageAttachment(
           captchaImage.createPNGStream(),
@@ -39,12 +35,13 @@ export const sendInitialVerificationMessage = async (
 
         collector.on("collect", async (m: Message) => {
           if (m.content.trim() === verId) {
-            await channel.send(`Verificato con successo.`).catch(() => {
+            const successEmbed = createNewDMEmbedBasedOnCase({
+              color: "#43A047",
+              title: "Verifica eseguita con successo! Benvenut*!"
+            })
+            await channel.send(successEmbed).catch(() => {
               sendDmDisabledError(newMember);
             });
-            info(
-              `[VERIFICA]: 💚 Verifica per ${newMember.displayName} eseguita con successo`
-            );
             await channel.delete();
             res(newMember);
           }
@@ -52,10 +49,16 @@ export const sendInitialVerificationMessage = async (
 
         collector.on("end", (collected) => {
           if (collected.size === 0) {
-            channel.send(`Verifica fallita`).catch(() => {});
-            warn(
-              `[VERIFICA]: ❌ Verifica per ${newMember.displayName} fallita`
-            );
+            /**
+             * TODO: Creare un comando per lanciare da capo una verifica
+             */
+            const failedEmbed = createNewDMEmbedBasedOnCase({
+              color: "#e53935",
+              title: `Verifica Fallita!`
+            })
+            channel.send(failedEmbed).catch((err) => {
+              loggerError("Errore nella verifica", err.message)
+            });
             channel.delete();
             rej(newMember);
           }
@@ -64,7 +67,7 @@ export const sendInitialVerificationMessage = async (
     } catch (error) {
       loggerError(
         `[VERIFICA]: Errore nella creazione del channel`,
-        JSON.stringify(error)
+        error.message
       );
     }
   });

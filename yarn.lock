@@ -74,6 +74,11 @@ ansi-align@^3.0.0:
   dependencies:
     string-width "^3.0.0"
 
+ansi-colors@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/ansi-colors/-/ansi-colors-4.1.1.tgz#cbb9ae256bf750af1eab344f229aa27fe94ba348"
+  integrity sha512-JoX0apGbHaUJBNl6yF+p6JAFYZ666/hhCGKN5t9QFjbJQKUU/g8MNbFDbvfrgKXvI1QpZplPOnwIo99lX/AAmA==
+
 ansi-regex@^2.0.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-2.1.1.tgz#c3b33ab5ee360d86e0e628f0468ae7ef27d654df"
@@ -136,11 +141,6 @@ balanced-match@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
-
-beautify.log@^2.1.2:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/beautify.log/-/beautify.log-2.1.2.tgz#69d7750fa8cb6e55abf658f1c18248bcadc8fca3"
-  integrity sha512-Os8hmnh5iLrx8NjBO4uiA6TgfD4o05qTmtOjI7Xbbceg88A9+ia3jfzAM6SV01ZFLgE2oebTJeeq9X3ITqnh+g==
 
 binary-extensions@^2.0.0:
   version "2.2.0"
