@@ -1,0 +1,1 @@
+export const _prefix = process.env.BOT_PREFIX_TOKEN;

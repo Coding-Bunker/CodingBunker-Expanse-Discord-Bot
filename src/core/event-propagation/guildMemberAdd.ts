@@ -5,11 +5,8 @@ import {
   sendVerificationSuccessMessage,
 } from "../../verification/verificationProcessMethods";
 import { error, info } from "../utils/logger";
-/**
- * handling di tutti i metodi relativi all'evento `guildMemberAdd`
- * @param member: il membro su cui eseguire l'handling
- */
-export default async function guildMemberAdd(member: GuildMember) {
+
+export async function verifyUserThroughCaptcha (member: GuildMember){
   await sendInitialVerificationMessage(member)
     .then((successMember) => {
       successMember.roles.add(process.env.JUNIOR_ROLE_ID).then((member) => {
@@ -35,4 +32,12 @@ export default async function guildMemberAdd(member: GuildMember) {
           );
       }, 3600000);
     });
+}
+
+/**
+ * handling di tutti i metodi relativi all'evento `guildMemberAdd`
+ * @param member: il membro su cui eseguire l'handling
+ */
+ export default async function guildMemberAdd(member: GuildMember) {
+  await verifyUserThroughCaptcha(member);
 }
